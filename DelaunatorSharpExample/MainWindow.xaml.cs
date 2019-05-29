@@ -77,8 +77,8 @@ namespace DelaunatorSharpExample
 
         private void GenerateSamples()
         {
-            var width = (float)(ActualWidth != default ? ActualWidth : Width);
-            var height = (float)(ActualHeight != default ? ActualHeight : Height);
+            var width = (float)(ActualWidth != 0 ? ActualWidth : Width);
+            var height = (float)(ActualHeight != 0 ? ActualHeight : Height);
             var samples = UniformPoissonDiskSampler.SampleCircle(new Vector2(width/2, height/3), 220 , 40).Select(x => new Point(x.X, x.Y));
 
             foreach (var sample in samples)

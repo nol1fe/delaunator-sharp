@@ -568,7 +568,7 @@ namespace DelaunatorSharp
         public IEnumerable<IPoint> GetTrianglePoints(int t) => PointsOfTriangle(t).Select(p => Points.ElementAtOrDefault(p));
         public IEnumerable<IPoint> GetRellaxedPoints() => GetVoronoiCells().Select(x => GetCentroid(x.Points));
         public IEnumerable<IEdge> GetEdgesOfTriangle(int t) => CreateHull(EdgesOfTriangle(t).Select(p => Points.ElementAtOrDefault(p)));
-        public IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(default, a, b)).OfType<IEdge>();
+        public IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(0, a, b)).OfType<IEdge>();
         public IPoint GetTriangleCenter(int t)
         {
             var vertices = GetTrianglePoints(t);
@@ -599,7 +599,7 @@ namespace DelaunatorSharp
             }
 
             if (Math.Abs(accumulatedArea) < 1E-7f)
-                return default;
+                return new Point();
 
             accumulatedArea *= 3f;
             return new Point(centerX / accumulatedArea, centerY / accumulatedArea);
