@@ -34,14 +34,14 @@ namespace DelaunatorSharpExample
 
         private const string TimeFormat = @"hh\:mm\:ss";
         #region Observables
-        private IObservable<IPoint> MouseMoveStream => Observable
+        private IObservable<Point> MouseMoveStream => Observable
             .FromEventPattern<MouseEventArgs>(this, nameof(MouseMove))
             .Select(x => x.EventArgs.GetPosition(this))
-            .Select(point => new DelaunatorSharp.Models.Point(point.X, point.Y) as IPoint);
-        private IObservable<IPoint> MouseDownStream => Observable
+            .Select(point => new Point(point.X, point.Y));
+        private IObservable<Point> MouseDownStream => Observable
             .FromEventPattern<MouseEventArgs>(this, nameof(MouseLeftButtonDown))
             .Select(evt => evt.EventArgs.GetPosition(this))
-            .Select(point => new DelaunatorSharp.Models.Point(point.X, point.Y) as IPoint);
+            .Select(point => new Point(point.X, point.Y));
         private IObservable<TimeSpan> Interval(double time = 1) => Observable
             .Interval(TimeSpan.FromSeconds(time))
             .TimeInterval()
@@ -79,7 +79,7 @@ namespace DelaunatorSharpExample
         {
             var width = (float)(ActualWidth != default ? ActualWidth : Width);
             var height = (float)(ActualHeight != default ? ActualHeight : Height);
-            var samples = UniformPoissonDiskSampler.SampleRectangle(new Vector2(0, 0), new Vector2(width, height), 40, 30).Select(x => new Point(x.X, x.Y));
+            var samples = UniformPoissonDiskSampler.SampleCircle(new Vector2(width/2, height/3), 220 , 40).Select(x => new Point(x.X, x.Y));
 
             foreach (var sample in samples)
             {

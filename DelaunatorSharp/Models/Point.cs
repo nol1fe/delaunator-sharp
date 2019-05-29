@@ -12,6 +12,7 @@ namespace DelaunatorSharp.Models
             X = x;
             Y = y;
         }
+        public override string ToString() => $"{X},{Y}";
     }
 
 }
