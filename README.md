@@ -1,0 +1,2 @@
+# delaunator-sharp
+Delaunay Triangulation
