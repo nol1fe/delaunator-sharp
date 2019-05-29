@@ -1,0 +1,40 @@
+﻿<Window x:Class="DelaunatorSharpExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DelaunatorSharpExample"
+        mc:Ignorable="d"
+        FontSize="10"
+        Background="DarkGray"
+        WindowStartupLocation="CenterScreen"
+        Title="Delaunator" Height="800" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <DockPanel VerticalAlignment="Top">
+            <Label x:Name="ApplicationTime" HorizontalAlignment="Left" Content="00:00:00"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Label Content="mouse position:"></Label>
+                    <Label x:Name="MousePosition" Content="0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+        <Canvas x:Name="PlayGround" Grid.ColumnSpan="5">
+            <Rectangle Width="10" Height="10" Visibility="Hidden" Stroke="Black" x:Name="Square" Canvas.Left="50" Canvas.Top="50"></Rectangle>
+        </Canvas>
+        <Button Content="Generate Samples" Grid.Row="1" Click="OnGenerateSamplesClick"/>
+        <DockPanel HorizontalAlignment="Stretch" Grid.Row="2">
+            <Button Width="200" Content="Draw voronoi" Click="OnDrawVoronoiClick"/>
+            <Button Width="200" Content="Draw delaunay" Grid.ColumnSpan="2" Click="OnDrawDelaunayClick"/>
+            <Button Width="200" Content="Draw Hull"  Click="OnDrawHullClick"/>
+            <Button Content="Draw Diagram" Click="OnDrawDiagramClick"/>
+        </DockPanel>
+        <Button Content="Clear" Grid.Row="3" Click="OnClearClick"/>
+    </Grid>
+</Window>
