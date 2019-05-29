@@ -1,5 +1,3 @@
 language: csharp
 solution: delaunator-sharp.sln
 mono: none
-install:
-  - nuget restore delaunator-sharp.sln
