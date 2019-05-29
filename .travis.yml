@@ -1,2 +1,4 @@
 language: csharp
 solution: delaunator-sharp.sln
+mono: none
+dotnet: 2.1.105
