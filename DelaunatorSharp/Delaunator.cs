@@ -572,7 +572,7 @@ namespace DelaunatorSharp
         public IPoint GetTriangleCenter(int t)
         {
             var vertices = GetTrianglePoints(t);
-            return GetCircumcenter(vertices.ElementAtOrDefault(0), vertices.ElementAtOrDefault(1), vertices.ElementAtOrDefault(2));
+            return GetCentroid(vertices);
         }
         public IPoint GetCircumcenter(IPoint a, IPoint b, IPoint c)
         {
