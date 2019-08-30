@@ -15,7 +15,7 @@ There is available playground in DelaunatorSharpExample project that shows examp
 
 <p float="left" align="middle">
 <img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator.PNG" height="200" width="200">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator2.PNG" height="200" width="200">
+<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Circle.PNG" height="200" width="200">
 </p>
 
 Points were generated with [Poisson Disc Sampling](https://www.jasondavies.com/poisson-disc)
