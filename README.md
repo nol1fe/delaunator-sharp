@@ -14,7 +14,7 @@ See https://mapbox.github.io/delaunator/ for more information about the `Triangl
 There is available playground in DelaunatorSharpExample project that shows examples of drawing [Voronoi Diagram](https://en.wikipedia.org/wiki/Voronoi_diagram), [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) and [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull)
 
 <p float="left" align="middle">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator.PNG" height="200" width="200">
+<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Rectangle.png.PNG" height="200" width="200">
 <img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Circle.PNG" height="200" width="200">
 </p>
 
