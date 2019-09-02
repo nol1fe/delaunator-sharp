@@ -1,4 +1,4 @@
-# delaunator C#
+# Delaunator C#
 
 Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) of 2D points implemented in C#.
 
