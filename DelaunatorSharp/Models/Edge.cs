@@ -1,10 +1,4 @@
-﻿using DelaunatorSharp.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-
-namespace DelaunatorSharp.Models
+﻿namespace Delaunator
 {
     public struct Edge : IEdge
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Windows;
 
-namespace DelaunatorSharp.Interfaces
+namespace Delaunator
 {
     public interface ITriangle
     {

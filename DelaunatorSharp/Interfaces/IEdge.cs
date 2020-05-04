@@ -1,4 +1,4 @@
-﻿namespace DelaunatorSharp.Interfaces
+﻿namespace Delaunator
 {
     public interface IEdge
     {

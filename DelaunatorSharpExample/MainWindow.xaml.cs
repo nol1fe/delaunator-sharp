@@ -1,6 +1,4 @@
-﻿using DelaunatorSharp;
-using DelaunatorSharp.Interfaces;
-using DelaunatorSharp.Models;
+﻿using Delaunator;
 using SlimDX;
 using System;
 using System.Collections.Generic;
@@ -18,7 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DelaunatorSharpExample
+
+namespace Delaunator.WPF.Example
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -79,7 +78,7 @@ namespace DelaunatorSharpExample
         {
             var width = (float)(ActualWidth != 0 ? ActualWidth : Width);
             var height = (float)(ActualHeight != 0 ? ActualHeight : Height);
-            var samples = UniformPoissonDiskSampler.SampleCircle(new Vector2(width/2, height/3), 220 , 40).Select(x => new Point(x.X, x.Y));
+            var samples = UniformPoissonDiskSampler.SampleCircle(new Vector2(width / 2, height / 3), 220, 40).Select(x => new Point(x.X, x.Y));
 
             foreach (var sample in samples)
             {

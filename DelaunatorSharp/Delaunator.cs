@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DelaunatorSharp.Interfaces;
-using DelaunatorSharp.Models;
 
-namespace DelaunatorSharp
+namespace Delaunator
 {
     public class Delaunator
     {
@@ -21,8 +19,8 @@ namespace DelaunatorSharp
         private readonly int[] hullTri;
         private readonly int[] hullHash;
 
-        private double _cx;
-        private double _cy;
+        private double cx;
+        private double cy;
 
         private int trianglesLen;
         private readonly double[] coords;
@@ -32,10 +30,11 @@ namespace DelaunatorSharp
 
         public Delaunator(IEnumerable<IPoint> points)
         {
-            if (points.Count() < 2)
+            if (points.Count() < 3)
             {
                 throw new ArgumentOutOfRangeException("Need at least 3 points");
             }
+
             Points = points.ToList();
             coords = new double[Points.Count() * 2];
 
@@ -81,7 +80,9 @@ namespace DelaunatorSharp
             var cy = (minY + maxY) / 2;
 
             var minDist = double.PositiveInfinity;
-            int i0 = 0, i1 = 0, i2 = 0;
+            var i0 = 0;
+            var i1 = 0;
+            var i2 = 0;
 
             // pick a seed point close to the center
             for (int i = 0; i < n; i++)
@@ -148,8 +149,8 @@ namespace DelaunatorSharp
             }
 
             var center = Circumcenter(i0x, i0y, i1x, i1y, i2x, i2y);
-            _cx = center.X;
-            _cy = center.Y;
+            this.cx = center.X;
+            this.cy = center.Y;
 
             var dists = new double[n];
             for (var i = 0; i < n; i++)
@@ -294,7 +295,7 @@ namespace DelaunatorSharp
         private int Legalize(int a)
         {
             var i = 0;
-            var ar = 0;
+            int ar;
 
             // recursion eliminated with a fixed-size stack
             while (true)
@@ -420,7 +421,7 @@ namespace DelaunatorSharp
             Halfedges[a] = b;
             if (b != -1) Halfedges[b] = a;
         }
-        private int HashKey(double x, double y) => (int)(Math.Floor(PseudoAngle(x - _cx, y - _cy) * hashSize) % hashSize);
+        private int HashKey(double x, double y) => (int)(Math.Floor(PseudoAngle(x - cx, y - cy) * hashSize) % hashSize);
         private double PseudoAngle(double dx, double dy)
         {
             var p = dx / (Math.Abs(dx) + Math.Abs(dy));

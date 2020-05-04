@@ -1,10 +1,6 @@
-﻿using DelaunatorSharp.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Collections.Generic;
 
-namespace DelaunatorSharp.Models
+namespace Delaunator
 {
     public struct VoronoiCell : IVoronoiCell
     {

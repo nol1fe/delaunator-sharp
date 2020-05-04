@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelaunatorSharpExample", "DelaunatorSharpExample\DelaunatorSharpExample.csproj", "{A8C191DB-3C69-4847-B57A-1524D13C1A30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delaunator.WPF.Example", "DelaunatorSharpExample\Delaunator.WPF.Example.csproj", "{A8C191DB-3C69-4847-B57A-1524D13C1A30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelaunatorSharp", "DelaunatorSharp\DelaunatorSharp.csproj", "{DF6810D7-A13E-4956-A4AD-634A5108C055}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delaunator", "DelaunatorSharp\Delaunator.csproj", "{DF6810D7-A13E-4956-A4AD-634A5108C055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

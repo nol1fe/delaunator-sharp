@@ -1,7 +1,6 @@
-﻿using DelaunatorSharp.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace DelaunatorSharp.Models
+namespace Delaunator
 {
     public struct Triangle : ITriangle
     {

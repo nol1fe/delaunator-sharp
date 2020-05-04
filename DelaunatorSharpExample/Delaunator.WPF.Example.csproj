@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A8C191DB-3C69-4847-B57A-1524D13C1A30}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DelaunatorSharpExample</RootNamespace>
-    <AssemblyName>DelaunatorSharpExample</AssemblyName>
+    <RootNamespace>Delaunator.WPF.Example</RootNamespace>
+    <AssemblyName>Delaunator.WPF.Example</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -115,9 +115,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DelaunatorSharp\DelaunatorSharp.csproj">
+    <ProjectReference Include="..\DelaunatorSharp\Delaunator.csproj">
       <Project>{df6810d7-a13e-4956-a4ad-634a5108c055}</Project>
-      <Name>DelaunatorSharp</Name>
+      <Name>Delaunator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

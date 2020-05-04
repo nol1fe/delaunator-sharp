@@ -1,6 +1,4 @@
-﻿using DelaunatorSharp.Interfaces;
-
-namespace DelaunatorSharp.Models
+﻿namespace Delaunator
 {
     public struct Point : IPoint
     {
