@@ -28,8 +28,8 @@ BenchmarkDotNet=v0.12.1
 Intel Core i5-4460 CPU 3.20GHz (Haswell), 1 CPU, 4 logical and 4 physical cores .NET Core SDK=3.1.201
 ```
 
-|   **Count** |     **Type** |        **Mean** |
-|-------- |--------- |------------:|
+|   **Count** |     **Type** |     **Mean** |
+|:--------:|:--------:|------------:|
 |  100000 |  Uniform |    85.53 ms |
 |  100000 | Gaussian |    84.49 ms |
 |  100000 |     Grid |    71.95 ms |
