@@ -4,9 +4,9 @@ namespace Delaunator
 {
     public struct VoronoiCell : IVoronoiCell
     {
-        public IEnumerable<IPoint> Points { get; set; }
+        public IPoint[] Points { get; set; }
         public int Index { get; set; }
-        public VoronoiCell(int triangleIndex, IEnumerable<IPoint> points)
+        public VoronoiCell(int triangleIndex, IPoint[] points)
         {
             Points = points;
             Index = triangleIndex;

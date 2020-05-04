@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delaunator", "Delaunator\De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delaunator.WPF.Example", "Delaunator.WPF.Example\Delaunator.WPF.Example.csproj", "{A8C191DB-3C69-4847-B57A-1524D13C1A30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delaunator.Benchmark", "Delaunator.Benchmark\Delaunator.Benchmark.csproj", "{A89782C0-ABD0-4E81-BD2F-465F0B40408E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A8C191DB-3C69-4847-B57A-1524D13C1A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8C191DB-3C69-4847-B57A-1524D13C1A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8C191DB-3C69-4847-B57A-1524D13C1A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89782C0-ABD0-4E81-BD2F-465F0B40408E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89782C0-ABD0-4E81-BD2F-465F0B40408E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89782C0-ABD0-4E81-BD2F-465F0B40408E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89782C0-ABD0-4E81-BD2F-465F0B40408E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

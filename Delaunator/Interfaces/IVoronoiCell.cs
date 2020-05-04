@@ -4,7 +4,7 @@ namespace Delaunator
 {
     public interface IVoronoiCell
     {
-        IEnumerable<IPoint> Points { get; }
+        IPoint[] Points { get; }
         int Index { get; }
     }
 }

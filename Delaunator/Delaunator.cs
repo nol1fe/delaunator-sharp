@@ -11,7 +11,7 @@ namespace Delaunator
 
         public int[] Triangles { get; private set; }
         public int[] Halfedges { get; private set; }
-        public IEnumerable<IPoint> Points { get; private set; }
+        public IPoint[] Points { get; private set; }
 
         private readonly int hashSize;
         private readonly int[] hullPrev;
@@ -28,19 +28,19 @@ namespace Delaunator
         private readonly int hullSize;
         private readonly int[] hull;
 
-        public Delaunator(IEnumerable<IPoint> points)
+        public Delaunator(IPoint[] points)
         {
-            if (points.Count() < 3)
+            if (points.Length < 3)
             {
                 throw new ArgumentOutOfRangeException("Need at least 3 points");
             }
 
-            Points = points.ToList();
-            coords = new double[Points.Count() * 2];
+            Points = points;
+            coords = new double[Points.Length * 2];
 
-            for (var i = 0; i < Points.Count(); i++)
+            for (var i = 0; i < Points.Length; i++)
             {
-                var p = Points.ElementAtOrDefault(i);
+                var p = Points[i];
                 coords[2 * i] = p.X;
                 coords[2 * i + 1] = p.Y;
             }
@@ -530,8 +530,8 @@ namespace Delaunator
             {
                 if (e > Halfedges[e])
                 {
-                    var p = Points.ElementAtOrDefault(Triangles[e]);
-                    var q = Points.ElementAtOrDefault(Triangles[NextHalfedge(e)]);
+                    var p = Points[Triangles[e]];
+                    var q = Points[Triangles[NextHalfedge(e)]];
                     yield return new Edge(e, p, q);
                 }
             }
@@ -559,16 +559,16 @@ namespace Delaunator
                     seen.Add(id);
                     var edges = EdgesAroundPoint(triangleId);
                     var triangles = edges.Select(x => TriangleOfEdge(x));
-                    var vertices = triangles.Select(x => GetTriangleCenter(x));
+                    var vertices = triangles.Select(x => GetTriangleCenter(x)).ToArray();
                     yield return new VoronoiCell(id, vertices);
                 }
             }
         }
         public IEnumerable<IEdge> GetHullEdges() => CreateHull(GetHullPoints());
-        public IEnumerable<IPoint> GetHullPoints() => hull.Select(x => Points.ElementAtOrDefault(x));
-        public IEnumerable<IPoint> GetTrianglePoints(int t) => PointsOfTriangle(t).Select(p => Points.ElementAtOrDefault(p));
-        public IEnumerable<IPoint> GetRellaxedPoints() => GetVoronoiCells().Select(x => GetCentroid(x.Points));
-        public IEnumerable<IEdge> GetEdgesOfTriangle(int t) => CreateHull(EdgesOfTriangle(t).Select(p => Points.ElementAtOrDefault(p)));
+        public IPoint[] GetHullPoints() => hull.Select(x => Points[x]).ToArray();
+        public IPoint[] GetTrianglePoints(int t) => PointsOfTriangle(t).Select(p => Points[p]).ToArray();
+        public IPoint[] GetRellaxedPoints() => GetVoronoiCells().Select(x => GetCentroid(x.Points)).ToArray();
+        public IEnumerable<IEdge> GetEdgesOfTriangle(int t) => CreateHull(EdgesOfTriangle(t).Select(p => Points[p]));
         public IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(0, a, b)).OfType<IEdge>();
         public IPoint GetTriangleCenter(int t)
         {
@@ -585,7 +585,7 @@ namespace Delaunator
                 1 / D * (ad * (b.Y - c.Y) + bd * (c.Y - a.Y) + cd * (a.Y - b.Y)),
                 1 / D * (ad * (c.X - b.X) + bd * (a.X - c.X) + cd * (b.X - a.X)));
         }
-        public IPoint GetCentroid(IEnumerable<IPoint> points)
+        public IPoint GetCentroid(IPoint[] points)
         {
             double accumulatedArea = 0.0f;
             double centerX = 0.0f;
@@ -593,10 +593,10 @@ namespace Delaunator
 
             for (int i = 0, j = points.Count() - 1; i < points.Count(); j = i++)
             {
-                var temp = points.ElementAtOrDefault(i).X * points.ElementAtOrDefault(j).Y - points.ElementAtOrDefault(j).X * points.ElementAtOrDefault(i).Y;
+                var temp = points[i].X * points[j].Y - points[j].X * points[i].Y;
                 accumulatedArea += temp;
-                centerX += (points.ElementAtOrDefault(i).X + points.ElementAtOrDefault(j).X) * temp;
-                centerY += (points.ElementAtOrDefault(i).Y + points.ElementAtOrDefault(j).Y) * temp;
+                centerX += (points[i].X + points[j].X) * temp;
+                centerY += (points[i].Y + points[j].Y) * temp;
             }
 
             if (Math.Abs(accumulatedArea) < 1E-7f)

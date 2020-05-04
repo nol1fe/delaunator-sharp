@@ -91,7 +91,7 @@ namespace Delaunator.WPF.Example
             if (!IsLengthOfPointsValid) return;
             ClearDiagram();
 
-            delaunator = new Delaunator(Points);
+            delaunator = new Delaunator(Points.ToArray());
             DrawCircles(Points);
             DrawDelaunay();
             DrawVoronoi();
@@ -136,7 +136,7 @@ namespace Delaunator.WPF.Example
         private void RefreshDelaunator()
         {
             if (!IsLengthOfPointsValid || Points.Count() == delaunator?.Points.Count()) return;
-            delaunator = new Delaunator(Points);
+            delaunator = new Delaunator(Points.ToArray());
         }
 
         #region Canvas
