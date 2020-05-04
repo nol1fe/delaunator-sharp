@@ -115,7 +115,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DelaunatorSharp\Delaunator.csproj">
+    <ProjectReference Include="..\Delaunator\Delaunator.csproj">
       <Project>{df6810d7-a13e-4956-a4ad-634a5108c055}</Project>
       <Name>Delaunator</Name>
     </ProjectReference>
