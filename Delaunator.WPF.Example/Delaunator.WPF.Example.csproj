@@ -116,7 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Delaunator\Delaunator.csproj">
-      <Project>{df6810d7-a13e-4956-a4ad-634a5108c055}</Project>
+      <Project>{15068f00-84fe-4bf6-a47a-65a08015e0bf}</Project>
       <Name>Delaunator</Name>
     </ProjectReference>
   </ItemGroup>
