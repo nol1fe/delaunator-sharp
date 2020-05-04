@@ -20,3 +20,18 @@ There is available playground in DelaunatorSharpExample project that shows examp
 
 Points were generated with [Poisson Disc Sampling](https://www.jasondavies.com/poisson-disc)
 implemented by [UniformPoissonDiskSampler](http://theinstructionlimit.com/fast-uniform-poisson-disk-sampling-in-c)
+
+## Performance
+
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.778 (1903/May2019Update/19H1)
+Intel Core i5-4460 CPU 3.20GHz (Haswell), 1 CPU, 4 logical and 4 physical cores .NET Core SDK=3.1.201
+Job-XCGETU : .NET Core 3.1.3 (CoreCLR 4.700.20.11803, CoreFX 4.700.20.12001), X64 RyuJIT
+
+|   **Count** |     **Type** |        **Mean** |
+|-------- |--------- |------------:|
+|  100000 |  Uniform |    **85.53 ms** |
+|  100000 | Gaussian |    **84.49 ms** |
+|  100000 |     Grid |    **71.95 ms** |
+|  1000000 |  Uniform | **1,127.57 ms** |
+|  1000000 | Gaussian | **1,128.37 ms** |
+|  1000000 |     Grid |   **874.02 ms** |
