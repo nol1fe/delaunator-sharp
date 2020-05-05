@@ -1,4 +1,4 @@
-﻿namespace Delaunator
+﻿namespace DelaunatorSharp
 {
     public struct Point : IPoint
     {

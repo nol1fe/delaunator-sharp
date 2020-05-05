@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SlimDX;
 
-namespace Delaunator.WPF.Example
+namespace DelaunatorSharp.WPF
 {
     // http://theinstructionlimit.com/fast-uniform-poisson-disk-sampling-in-c <- copied from Renaud Bédard
 

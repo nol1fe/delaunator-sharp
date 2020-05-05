@@ -3,7 +3,7 @@ using BenchmarkDotNet.Engines;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Delaunator.Benchmark
+namespace DelaunatorSharp.Benchmark
 {
     [SimpleJob(RunStrategy.ColdStart, warmupCount:10, targetCount: 10)]
     [HtmlExporter]

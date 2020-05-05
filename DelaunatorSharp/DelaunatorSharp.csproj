@@ -1,16 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net471</TargetFrameworks>
     <Description>Fast Delaunay triangulation of 2D points
-Port from Mapbox's Delaunator project (JavaScript).
-https://github.com/mapbox/delaunator</Description>
+Port from Mapbox's Delaunator project (JavaScript).</Description>
     <PackageProjectUrl>https://github.com/nol1fe/delaunator-sharp</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nol1fe/delaunator-sharp.git</RepositoryUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Authors>nol1fe</Authors>
     <Company>GBros</Company>
     <PackageTags>delaunay triangulation voronoi</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Copyright>https://github.com/mapbox/delaunator</Copyright>
+    <Version>1.0.2</Version>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <AssemblyName>DelaunatorSharp</AssemblyName>
+    <RootNamespace>DelaunatorSharp</RootNamespace>
+    <PackageId>Delaunator</PackageId>
+    <Product>Delaunator</Product>
   </PropertyGroup>
 
 </Project>

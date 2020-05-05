@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Delaunator
+﻿namespace DelaunatorSharp
 {
     public struct VoronoiCell : IVoronoiCell
     {

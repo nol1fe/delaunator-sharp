@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Delaunator
+namespace DelaunatorSharp
 {
     public class Delaunator
     {

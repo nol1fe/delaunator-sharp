@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using System.Linq;
 
-namespace Delaunator.Benchmark
+namespace DelaunatorSharp.Benchmark
 {
     class Program
     {

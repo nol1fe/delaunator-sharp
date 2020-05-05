@@ -1,5 +1,4 @@
-﻿using Delaunator;
-using SlimDX;
+﻿using SlimDX;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +14,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DelaunatorSharp;
 
-
-namespace Delaunator.WPF.Example
+namespace DelaunatorSharp.WPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
