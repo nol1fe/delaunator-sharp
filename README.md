@@ -4,6 +4,7 @@ Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulati
 
 This code was ported from [Mapbox's Delaunator project](https://github.com/mapbox/delaunator) (JavaScript).
 
+<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Unity_Example.gif" height="400" width="410">
 
 ## Documentation
 
@@ -22,7 +23,9 @@ Simply edit manifest.json file in your Unity Packages directory
 
 ## Example Unity
 
-From UnityPackage Menager select Delaunator and "Import into project" sample.
+From UnityPackage Menager select Delaunator and press "Import into Project".
+
+<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Package Manager.png" height="300" width="450">
 
 ##  Example WPF
 
