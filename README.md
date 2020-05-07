@@ -25,7 +25,7 @@ Simply edit manifest.json file in your Unity Packages directory
 ```
 
 
-## Example Unity
+## Unity Example
 
 From UnityPackage Menager select Delaunator and press "Import into Project".
 <p float="left" align="middle">
@@ -33,7 +33,7 @@ From UnityPackage Menager select Delaunator and press "Import into Project".
 </p>
 
 
-##  Example WPF
+## WPF Example
 
 There is available playground in DelaunatorSharp.WPF.Example project that shows examples of drawing [Voronoi Diagram](https://en.wikipedia.org/wiki/Voronoi_diagram), [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) and [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull)
 
