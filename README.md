@@ -24,7 +24,6 @@ Simply edit manifest.json file in your Unity Packages directory
 }
 ```
 
-
 ## Unity Example
 
 From UnityPackage Menager select Delaunator and press "Import into Project".
@@ -61,3 +60,8 @@ Intel Core i5-4460 CPU 3.20GHz (Haswell), 1 CPU, 4 logical and 4 physical cores 
 |  1000000 |  Uniform | 1,127.57 ms |
 |  1000000 | Gaussian | 1,128.37 ms |
 |  1000000 |     Grid |   874.02 ms |
+
+## NuGet
+
+https://www.nuget.org/packages/Delaunator/
+
