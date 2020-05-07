@@ -4,14 +4,29 @@ Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulati
 
 This code was ported from [Mapbox's Delaunator project](https://github.com/mapbox/delaunator) (JavaScript).
 
+
 ## Documentation
 
 See https://mapbox.github.io/delaunator/ for more information about the `Triangles` and `Halfedges` data structures.
 
 
-##  Example
+## Unity Installation
 
-There is available playground in DelaunatorSharpExample project that shows examples of drawing [Voronoi Diagram](https://en.wikipedia.org/wiki/Voronoi_diagram), [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) and [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull)
+Simply edit manifest.json file in your Unity Packages directory 
+```
+{
+  "dependencies": {
+    "com.nol1fe.delaunator": "https://github.com/nol1fe/delaunator-sharp-unitypackage.git",
+}
+```
+
+## Example Unity
+
+From UnityPackage Menager select Delaunator and "Import into project" sample.
+
+##  Example WPF
+
+There is available playground in DelaunatorSharp.WPF.Example project that shows examples of drawing [Voronoi Diagram](https://en.wikipedia.org/wiki/Voronoi_diagram), [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) and [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull)
 
 <p float="left" align="middle">
 <img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Rectangle.png" height="200" width="200">
