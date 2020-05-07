@@ -3,8 +3,11 @@
 Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) of 2D points implemented in C#.
 
 This code was ported from [Mapbox's Delaunator project](https://github.com/mapbox/delaunator) (JavaScript).
-
+<p float="left" align="middle">
 <img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Unity_Example.gif" height="400" width="410">
+<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Unity_Example_Mesh.gif" height="400" width="410">
+</p>
+
 
 ## Documentation
 
@@ -21,11 +24,14 @@ Simply edit manifest.json file in your Unity Packages directory
 }
 ```
 
+
 ## Example Unity
 
 From UnityPackage Menager select Delaunator and press "Import into Project".
-
+<p float="left" align="middle">
 <img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Package Manager.png" height="300" width="450">
+</p>
+
 
 ##  Example WPF
 
@@ -38,6 +44,7 @@ There is available playground in DelaunatorSharp.WPF.Example project that shows 
 
 Points were generated with [Poisson Disc Sampling](https://www.jasondavies.com/poisson-disc)
 implemented by [UniformPoissonDiskSampler](http://theinstructionlimit.com/fast-uniform-poisson-disk-sampling-in-c)
+
 
 ## Performance
 
