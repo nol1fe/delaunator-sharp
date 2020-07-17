@@ -12,8 +12,8 @@ Port from Mapbox's Delaunator project (JavaScript).</Description>
     <PackageTags>delaunay triangulation voronoi</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>https://github.com/mapbox/delaunator</Copyright>
-    <Version>1.0.2</Version>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <Version>1.0.3</Version>
+    <PackageReleaseNotes>Fix Infinite loop in Legalize method</PackageReleaseNotes>
     <AssemblyName>DelaunatorSharp</AssemblyName>
     <RootNamespace>DelaunatorSharp</RootNamespace>
     <PackageId>Delaunator</PackageId>
