@@ -360,7 +360,7 @@ namespace DelaunatorSharp
                                 hullTri[e] = a;
                                 break;
                             }
-                            e = hullNext[e];
+                            e = hullPrev[e];
                         } while (e != hullStart);
                     }
                     Link(a, hbl);
