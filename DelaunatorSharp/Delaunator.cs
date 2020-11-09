@@ -648,9 +648,9 @@ namespace DelaunatorSharp
             }
         }
 
-        public void ForEachVoronoiCell(Action<IVoronoiCell> callback, Func<int, IPoint> triangleVerticeSelector = null)
+        public void ForEachVoronoiCell(Action<IVoronoiCell> callback, Func<int, IPoint> triangleVertexSelector = null)
         {
-            foreach (var cell in GetVoronoiCells(triangleVerticeSelector))
+            foreach (var cell in GetVoronoiCells(triangleVertexSelector))
             {
                 callback?.Invoke(cell);
             }
