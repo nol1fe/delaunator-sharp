@@ -536,18 +536,23 @@ namespace DelaunatorSharp
                 }
             }
         }
-        public IEnumerable<IEdge> GetVoronoiEdges()
+        public IEnumerable<IEdge> GetVoronoiEdges(Func<int, IPoint> triangleVerticeSelector = null)
         {
+            if (triangleVerticeSelector == null) triangleVerticeSelector = x => GetCentroid(x);
             for (var e = 0; e < Triangles.Length; e++)
             {
                 if (e < Halfedges[e])
                 {
-                    var p = GetTriangleCircumcenter(TriangleOfEdge(e));
-                    var q = GetTriangleCircumcenter(TriangleOfEdge(Halfedges[e]));
+                    var p = triangleVerticeSelector(TriangleOfEdge(e));
+                    var q = triangleVerticeSelector(TriangleOfEdge(e));
                     yield return new Edge(e, p, q);
                 }
             }
         }
+
+        public IEnumerable<IEdge> GetVoronoiEdgesBasedOnCircumCenter() => GetVoronoiEdges(GetTriangleCircumcenter);
+        public IEnumerable<IEdge> GetVoronoiEdgesBasedOnCentroids() => GetVoronoiEdges(GetCentroid);
+
         public IEnumerable<IVoronoiCell> GetVoronoiCells(Func<int, IPoint> triangleVerticeSelector = null)
         {
             if (triangleVerticeSelector == null) triangleVerticeSelector = x => GetCentroid(x);
