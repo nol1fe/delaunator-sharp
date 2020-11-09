@@ -542,15 +542,17 @@ namespace DelaunatorSharp
             {
                 if (e < Halfedges[e])
                 {
-                    var p = GetTriangleCenter(TriangleOfEdge(e));
-                    var q = GetTriangleCenter(TriangleOfEdge(Halfedges[e]));
+                    var p = GetTriangleCircumcenter(TriangleOfEdge(e));
+                    var q = GetTriangleCircumcenter(TriangleOfEdge(Halfedges[e]));
                     yield return new Edge(e, p, q);
                 }
             }
         }
-        public IEnumerable<IVoronoiCell> GetVoronoiCells()
+        public IEnumerable<IVoronoiCell> GetVoronoiCells(Func<int, IPoint> triangleVerticeSelector = null)
         {
-            var seen = new HashSet<int>();  // of point ids
+            if (triangleVerticeSelector == null) triangleVerticeSelector = x => GetCentroid(x);
+
+            var seen = new HashSet<int>();
             for (var triangleId = 0; triangleId < Triangles.Length; triangleId++)
             {
                 var id = Triangles[NextHalfedge(triangleId)];
@@ -559,32 +561,32 @@ namespace DelaunatorSharp
                     seen.Add(id);
                     var edges = EdgesAroundPoint(triangleId);
                     var triangles = edges.Select(x => TriangleOfEdge(x));
-                    var vertices = triangles.Select(x => GetTriangleCenter(x)).ToArray();
+                    var vertices = triangles.Select(triangleVerticeSelector).ToArray();
                     yield return new VoronoiCell(id, vertices);
                 }
             }
         }
+
+        public IEnumerable<IVoronoiCell> GetVoronoiCellsBasedOnCircumcenters() => GetVoronoiCells(GetTriangleCircumcenter);
+        public IEnumerable<IVoronoiCell> GetVoronoiCellsBasedOnCentroids() => GetVoronoiCells(GetCentroid);
+      
         public IEnumerable<IEdge> GetHullEdges() => CreateHull(GetHullPoints());
         public IPoint[] GetHullPoints() => hull.Select(x => Points[x]).ToArray();
         public IPoint[] GetTrianglePoints(int t) => PointsOfTriangle(t).Select(p => Points[p]).ToArray();
-        public IPoint[] GetRellaxedPoints() => GetVoronoiCells().Select(x => GetCentroid(x.Points)).ToArray();
+        public IPoint[] GetRellaxedPoints() => GetVoronoiCellsBasedOnCircumcenters().Select(x => GetCentroid(x.Points)).ToArray();
         public IEnumerable<IEdge> GetEdgesOfTriangle(int t) => CreateHull(EdgesOfTriangle(t).Select(p => Points[p]));
         public IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(0, a, b)).OfType<IEdge>();
-        public IPoint GetTriangleCenter(int t)
+        public IPoint GetTriangleCircumcenter(int t)
+        {
+            var vertices = GetTrianglePoints(t);
+            return GetCircumcenter(vertices[0], vertices[1], vertices[2]);
+        }
+        public IPoint GetCentroid(int t)
         {
             var vertices = GetTrianglePoints(t);
             return GetCentroid(vertices);
         }
-        public IPoint GetCircumcenter(IPoint a, IPoint b, IPoint c)
-        {
-            var ad = a.X * a.X + a.Y * a.Y;
-            var bd = b.X * b.X + b.Y * b.Y;
-            var cd = c.X * c.X + c.Y * c.Y;
-            var D = 2 * (a.X * (b.Y - c.Y) + b.X * (c.Y - a.Y) + c.X * (a.Y - b.Y));
-            return new Point(
-                1 / D * (ad * (b.Y - c.Y) + bd * (c.Y - a.Y) + cd * (a.Y - b.Y)),
-                1 / D * (ad * (c.X - b.X) + bd * (a.X - c.X) + cd * (b.X - a.X)));
-        }
+        public IPoint GetCircumcenter(IPoint a, IPoint b, IPoint c) => Circumcenter(a.X, a.Y, b.X, b.Y, c.X, c.Y);
         public IPoint GetCentroid(IPoint[] points)
         {
             double accumulatedArea = 0.0f;
@@ -630,9 +632,25 @@ namespace DelaunatorSharp
                 callback?.Invoke(edge);
             }
         }
-        public void ForEachVoronoiCell(Action<IVoronoiCell> callback)
+        public void ForEachVoronoiCellBasedOnCentroids(Action<IVoronoiCell> callback)
         {
-            foreach (var cell in GetVoronoiCells())
+            foreach (var cell in GetVoronoiCellsBasedOnCentroids())
+            {
+                callback?.Invoke(cell);
+            }
+        }
+
+        public void ForEachVoronoiCellBasedOnCircumcenters(Action<IVoronoiCell> callback)
+        {
+            foreach (var cell in GetVoronoiCellsBasedOnCircumcenters())
+            {
+                callback?.Invoke(cell);
+            }
+        }
+
+        public void ForEachVoronoiCell(Action<IVoronoiCell> callback, Func<int, IPoint> triangleVerticeSelector = null)
+        {
+            foreach (var cell in GetVoronoiCells(triangleVerticeSelector))
             {
                 callback?.Invoke(cell);
             }
