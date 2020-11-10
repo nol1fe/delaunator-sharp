@@ -1,0 +1,30 @@
+{
+  "name": "com.nol1fe.delaunator",
+  "displayName": "Delaunator",
+  "description": "Fast Delaunay triangulation of 2D points\nPort from Mapbox's Delaunator project (JavaScript).",
+  "license": "MIT",
+  "version": "1.0.5",
+  "references": [
+    "DelaunatorSharp"
+  ],
+  "keywords": [
+    "delaunator",
+    "delaunay",
+    "triangulation",
+    "voronoi"
+  ],
+  "category": "triangulation",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nol1fe/delaunator-sharp.git"
+  },
+  "author": "nol1fe <nol1fe@rocketmail.com> (https://github.com/nol1fe)",
+  "samples": [
+    {
+      "displayName": "Samples",
+      "description": "Example use of delaunator library",
+      "path": "Runtime/Samples"
+    }
+  ],
+  "type": "sample"
+}
