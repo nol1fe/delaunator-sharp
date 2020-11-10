@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1292916145698231221
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1292916145698231222}
+  - component: {fileID: 1292916145698231223}
+  m_Layer: 0
+  m_Name: DelaunatorPreview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1292916145698231222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292916145698231221}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1292916145698231223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292916145698231221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c88a4b9e28f8645b88feecfc0f6e08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trianglePointPrefab: {fileID: 5961768956659207801, guid: c31800eeb430deb4b96b784ea16dd9cf,
+    type: 3}
+  voronoiPointPrefab: {fileID: 5961768956659207801, guid: 6c0e382d52a86f448ba06f8ff7c14a96,
+    type: 3}
+  voronoiEdgeWidth: 0.01
+  triangleEdgeWidth: 0.01
+  hullEdgeWith: 0.03
+  triangleEdgeColor: {r: 0, g: 0, b: 0, a: 1}
+  hullColor: {r: 1, g: 0.56366897, b: 0, a: 1}
+  voronoiColor: {r: 1, g: 1, b: 1, a: 1}
+  meshMaterial: {fileID: 2100000, guid: f6a42aa8c693b6c4ebf406ff7e09ef4a, type: 2}
+  lineMaterial: {fileID: 2100000, guid: fe60369f18361df418fb98a1ee9d6ea5, type: 2}
+  generationSize: 4.5
+  generationMinDistance: 0.35
+  drawTrianglePoints: 1
+  drawTriangleEdges: 1
+  drawVoronoiPoints: 1
+  drawVoronoiEdges: 1
+  drawHull: 1
+  createMesh: 1
