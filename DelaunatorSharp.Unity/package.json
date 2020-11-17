@@ -20,10 +20,10 @@
   },
   "author": "nol1fe <nol1fe@rocketmail.com> (https://github.com/nol1fe)",
   "samples": [
-    {
-      "displayName": "Samples",
+     {
+      "displayName": "Examples",
       "description": "Example use of delaunator library",
-      "path": "Runtime/Samples"
+      "path": "Samples~"
     }
   ],
   "type": "sample"
