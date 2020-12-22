@@ -173,8 +173,6 @@ namespace DelaunatorSharp.Unity
 
             return (x * x) + (y * y);
         }
-        public static Random Random = new Random();
-
     }
 
     public static class MathHelper
