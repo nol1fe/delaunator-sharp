@@ -69,3 +69,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+/[Pp]ackages/
+/DelaunatorSharp/bin
+/DelaunatorSharp/obj
+/DelaunatorSharp.WPF/bin
+/DelaunatorSharp.WPF/obj
+/DelaunatorSharp.Benchmark/obj

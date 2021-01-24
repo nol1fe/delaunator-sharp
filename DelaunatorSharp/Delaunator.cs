@@ -544,7 +544,7 @@ namespace DelaunatorSharp
                 if (e < Halfedges[e])
                 {
                     var p = triangleVerticeSelector(TriangleOfEdge(e));
-                    var q = triangleVerticeSelector(TriangleOfEdge(e));
+                    var q = triangleVerticeSelector(TriangleOfEdge(Halfedges[e]));
                     yield return new Edge(e, p, q);
                 }
             }
