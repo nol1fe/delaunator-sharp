@@ -5,8 +5,8 @@ Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulati
 
 This code was ported from [Mapbox's Delaunator project](https://github.com/mapbox/delaunator) (JavaScript).
 <p float="left" align="middle">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Unity_Example.gif" height="400" width="410">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Unity_Example_Mesh.gif" height="400" width="410">
+<img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Unity_Example.gif" height="400" width="410">
+<img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Unity_Example_Mesh.gif" height="400" width="410">
 </p>
 
 
@@ -29,7 +29,7 @@ Simply edit manifest.json file in your Unity Packages directory
 
 From UnityPackage Menager select Delaunator and press "Import into Project".
 <p float="left" align="middle">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Package Manager.png" height="300" width="450">
+<img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Package%20Manager.png" height="300" width="450">
 </p>
 
 
@@ -38,8 +38,8 @@ From UnityPackage Menager select Delaunator and press "Import into Project".
 There is available playground in DelaunatorSharp.WPF.Example project that shows examples of drawing [Voronoi Diagram](https://en.wikipedia.org/wiki/Voronoi_diagram), [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) and [Convex Hull](https://en.wikipedia.org/wiki/Convex_hull)
 
 <p float="left" align="middle">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Rectangle.png" height="200" width="200">
-<img src="https://github.com/nol1fe/delaunator-sharp/blob/master/Images/Delaunator_Circle.PNG" height="200" width="200">
+<img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Rectangle.png" height="200" width="200">
+<img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Circle.PNG" height="200" width="200">
 </p>
 
 Points were generated with [Poisson Disc Sampling](https://www.jasondavies.com/poisson-disc)
