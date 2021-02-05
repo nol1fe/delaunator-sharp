@@ -1,4 +1,5 @@
-# Delaunator C#
+# Delaunator C# 
+[![openupm](https://img.shields.io/npm/v/com.nol1fe.delaunator?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.nol1fe.delaunator/)
 
 Fast [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) of 2D points implemented in C#.
 
