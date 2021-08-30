@@ -287,8 +287,8 @@ namespace DelaunatorSharp
             hullPrev = hullNext = hullTri = null; // get rid of temporary arrays
 
             //// trim typed triangle mesh arrays
-            Array.Copy(Triangles, Triangles, trianglesLen);
-            Array.Copy(Halfedges, Halfedges, trianglesLen);
+            Triangles = Triangles.Take(trianglesLen).ToArray();
+            Halfedges = Halfedges.Take(trianglesLen).ToArray();
         }
 
         #region CreationLogic
