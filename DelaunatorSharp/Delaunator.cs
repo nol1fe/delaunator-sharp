@@ -45,7 +45,7 @@ namespace DelaunatorSharp
                 coords[2 * i + 1] = p.Y;
             }
 
-            var n = coords.Length >> 1;
+            var n = points.Length;
             var maxTriangles = 2 * n - 5;
 
             Triangles = new int[maxTriangles * 3];
@@ -384,7 +384,7 @@ namespace DelaunatorSharp
 
             return ar;
         }
-        private bool InCircle(double ax, double ay, double bx, double by, double cx, double cy, double px, double py)
+        private static bool InCircle(double ax, double ay, double bx, double by, double cx, double cy, double px, double py)
         {
             var dx = ax - px;
             var dy = ay - py;
@@ -422,12 +422,12 @@ namespace DelaunatorSharp
             if (b != -1) Halfedges[b] = a;
         }
         private int HashKey(double x, double y) => (int)(Math.Floor(PseudoAngle(x - cx, y - cy) * hashSize) % hashSize);
-        private double PseudoAngle(double dx, double dy)
+        private static double PseudoAngle(double dx, double dy)
         {
             var p = dx / (Math.Abs(dx) + Math.Abs(dy));
             return (dy > 0 ? 3 - p : 1 + p) / 4; // [0..1]
         }
-        private void Quicksort(int[] ids, double[] dists, int left, int right)
+        private static void Quicksort(int[] ids, double[] dists, int left, int right)
         {
             if (right - left <= 20)
             {
@@ -474,14 +474,14 @@ namespace DelaunatorSharp
                 }
             }
         }
-        private void Swap(int[] arr, int i, int j)
+        private static void Swap(int[] arr, int i, int j)
         {
             var tmp = arr[i];
             arr[i] = arr[j];
             arr[j] = tmp;
         }
-        private bool Orient(double px, double py, double qx, double qy, double rx, double ry) => (qy - py) * (rx - qx) - (qx - px) * (ry - qy) < 0;
-        private double Circumradius(double ax, double ay, double bx, double by, double cx, double cy)
+        private static bool Orient(double px, double py, double qx, double qy, double rx, double ry) => (qy - py) * (rx - qx) - (qx - px) * (ry - qy) < 0;
+        private static double Circumradius(double ax, double ay, double bx, double by, double cx, double cy)
         {
             var dx = bx - ax;
             var dy = by - ay;
@@ -494,7 +494,7 @@ namespace DelaunatorSharp
             var y = (dx * cl - ex * bl) * d;
             return x * x + y * y;
         }
-        private Point Circumcenter(double ax, double ay, double bx, double by, double cx, double cy)
+        private static Point Circumcenter(double ax, double ay, double bx, double by, double cx, double cy)
         {
             var dx = bx - ax;
             var dy = by - ay;
@@ -508,7 +508,7 @@ namespace DelaunatorSharp
 
             return new Point(x, y);
         }
-        private double Dist(double ax, double ay, double bx, double by)
+        private static double Dist(double ax, double ay, double bx, double by)
         {
             var dx = ax - bx;
             var dy = ay - by;
@@ -558,29 +558,54 @@ namespace DelaunatorSharp
             if (triangleVerticeSelector == null) triangleVerticeSelector = x => GetCentroid(x);
 
             var seen = new HashSet<int>();
+            var vertices = new List<IPoint>(10);    // Keep it outside the loop, reuse capacity, less resizes.
+
             for (var triangleId = 0; triangleId < Triangles.Length; triangleId++)
             {
                 var id = Triangles[NextHalfedge(triangleId)];
-                if (!seen.Any(x => x == id))
+                // True if element was added, If resize the set? O(n) : O(1)
+                if (seen.Add(id))
                 {
-                    seen.Add(id);
-                    var edges = EdgesAroundPoint(triangleId);
-                    var triangles = edges.Select(x => TriangleOfEdge(x));
-                    var vertices = triangles.Select(triangleVerticeSelector).ToArray();
-                    yield return new VoronoiCell(id, vertices);
+                    foreach (var edge in EdgesAroundPoint(triangleId))
+                    {
+                        // triangleVerticeSelector cant be null, no need to check before invoke (?.).
+                        vertices.Add(triangleVerticeSelector.Invoke(TriangleOfEdge(edge)));
+                    }
+                    yield return new VoronoiCell(id, vertices.ToArray());
+                    vertices.Clear();   // Clear elements, keep capacity
                 }
             }
         }
 
         public IEnumerable<IVoronoiCell> GetVoronoiCellsBasedOnCircumcenters() => GetVoronoiCells(GetTriangleCircumcenter);
         public IEnumerable<IVoronoiCell> GetVoronoiCellsBasedOnCentroids() => GetVoronoiCells(GetCentroid);
-      
+
         public IEnumerable<IEdge> GetHullEdges() => CreateHull(GetHullPoints());
-        public IPoint[] GetHullPoints() => hull.Select(x => Points[x]).ToArray();
-        public IPoint[] GetTrianglePoints(int t) => PointsOfTriangle(t).Select(p => Points[p]).ToArray();
-        public IPoint[] GetRellaxedPoints() => GetVoronoiCellsBasedOnCircumcenters().Select(x => GetCentroid(x.Points)).ToArray();
+
+        public IPoint[] GetHullPoints() => Array.ConvertAll<int, IPoint>(hull, (x) => Points[x]);
+
+        public IPoint[] GetTrianglePoints(int t)
+        {
+            var points = new List<IPoint>();
+            foreach (var p in PointsOfTriangle(t))
+            {
+                points.Add(Points[p]);
+            }
+            return points.ToArray();
+        }
+
+        public IPoint[] GetRellaxedPoints()
+        {
+            var points = new List<IPoint>();
+            foreach (var cell in GetVoronoiCellsBasedOnCircumcenters())
+            {
+                points.Add(GetCentroid(cell.Points));
+            }
+            return points.ToArray();
+        }
+
         public IEnumerable<IEdge> GetEdgesOfTriangle(int t) => CreateHull(EdgesOfTriangle(t).Select(p => Points[p]));
-        public IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(0, a, b)).OfType<IEdge>();
+        public static IEnumerable<IEdge> CreateHull(IEnumerable<IPoint> points) => points.Zip(points.Skip(1).Append(points.FirstOrDefault()), (a, b) => new Edge(0, a, b)).OfType<IEdge>();
         public IPoint GetTriangleCircumcenter(int t)
         {
             var vertices = GetTrianglePoints(t);
@@ -591,14 +616,15 @@ namespace DelaunatorSharp
             var vertices = GetTrianglePoints(t);
             return GetCentroid(vertices);
         }
-        public IPoint GetCircumcenter(IPoint a, IPoint b, IPoint c) => Circumcenter(a.X, a.Y, b.X, b.Y, c.X, c.Y);
-        public IPoint GetCentroid(IPoint[] points)
+        public static IPoint GetCircumcenter(IPoint a, IPoint b, IPoint c) => Circumcenter(a.X, a.Y, b.X, b.Y, c.X, c.Y);
+
+        public static IPoint GetCentroid(IPoint[] points)
         {
             double accumulatedArea = 0.0f;
             double centerX = 0.0f;
             double centerY = 0.0f;
 
-            for (int i = 0, j = points.Count() - 1; i < points.Count(); j = i++)
+            for (int i = 0, j = points.Length - 1; i < points.Length; j = i++)
             {
                 var temp = points[i].X * points[j].Y - points[j].X * points[i].Y;
                 accumulatedArea += temp;
@@ -674,7 +700,13 @@ namespace DelaunatorSharp
                 incoming = Halfedges[outgoing];
             } while (incoming != -1 && incoming != start);
         }
-        public IEnumerable<int> PointsOfTriangle(int t) => EdgesOfTriangle(t).Select(e => Triangles[e]);
+        public IEnumerable<int> PointsOfTriangle(int t)
+        {
+            foreach (var edge in EdgesOfTriangle(t))
+            {
+                yield return Triangles[edge];
+            }
+        }
         public IEnumerable<int> TrianglesAdjacentToTriangle(int t)
         {
             var adjacentTriangles = new List<int>();
@@ -690,10 +722,10 @@ namespace DelaunatorSharp
             return adjacentTriangles;
         }
 
-        public int NextHalfedge(int e) => (e % 3 == 2) ? e - 2 : e + 1;
-        public int PreviousHalfedge(int e) => (e % 3 == 0) ? e + 2 : e - 1;
-        public int[] EdgesOfTriangle(int t) => new int[] { 3 * t, 3 * t + 1, 3 * t + 2 };
-        public int TriangleOfEdge(int e) { return (int)Math.Floor((double)(e / 3)); }
+        public static int NextHalfedge(int e) => (e % 3 == 2) ? e - 2 : e + 1;
+        public static int PreviousHalfedge(int e) => (e % 3 == 0) ? e + 2 : e - 1;
+        public static int[] EdgesOfTriangle(int t) => new int[] { 3 * t, 3 * t + 1, 3 * t + 2 };
+        public static int TriangleOfEdge(int e) { return e / 3; }
         #endregion Methods based on index
     }
 }
