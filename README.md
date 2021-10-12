@@ -47,20 +47,19 @@ implemented by [UniformPoissonDiskSampler](http://theinstructionlimit.com/fast-u
 
 
 ## Performance
-
 ```
-BenchmarkDotNet=v0.12.1
-Intel Core i5-4460 CPU 3.20GHz (Haswell), 1 CPU, 4 logical and 4 physical cores .NET Core SDK=3.1.201
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19043
+11th Gen Intel Core i7-11800H 2.30GHz, 1 CPU, 16 logical and 8 physical cores .NET Core SDK=5.0.401
 ```
 
-|   **Count** |     **Type** |     **Mean** |
-|:--------:|:--------:|------------:|
-|  100000 |  Uniform |    85.53 ms |
-|  100000 | Gaussian |    84.49 ms |
-|  100000 |     Grid |    71.95 ms |
-|  1000000 |  Uniform | 1,127.57 ms |
-|  1000000 | Gaussian | 1,128.37 ms |
-|  1000000 |     Grid |   874.02 ms |
+|     Method |   Count |     Type |      Mean |    Error |   StdDev |
+|----------- |-------- |--------- |----------:|---------:|---------:|
+| Delaunator |  100000 |  Uniform |  63.66 ms | 21.68 ms | 14.34 ms |
+| Delaunator |  100000 | Gaussian |  62.07 ms | 21.60 ms | 14.29 ms |
+| Delaunator |  100000 |     Grid |  46.88 ms | 18.53 ms | 12.25 ms |
+| Delaunator | 1000000 |  Uniform | 658.91 ms | 41.11 ms | 27.19 ms |
+| Delaunator | 1000000 | Gaussian | 680.02 ms | 96.03 ms | 63.52 ms |
+| Delaunator | 1000000 |     Grid | 516.89 ms | 60.64 ms | 40.11 ms |
 
 ## NuGet
 
