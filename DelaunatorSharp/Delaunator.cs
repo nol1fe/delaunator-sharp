@@ -12,6 +12,7 @@ namespace DelaunatorSharp
         public int[] Triangles { get; private set; }
         public int[] Halfedges { get; private set; }
         public IPoint[] Points { get; private set; }
+        public int[] Hull { get; private set; }
 
         private readonly int hashSize;
         private readonly int[] hullPrev;
@@ -26,7 +27,6 @@ namespace DelaunatorSharp
         private readonly double[] coords;
         private readonly int hullStart;
         private readonly int hullSize;
-        private readonly int[] hull;
 
         public Delaunator(IPoint[] points)
         {
@@ -276,11 +276,11 @@ namespace DelaunatorSharp
                 hullHash[HashKey(coords[2 * e], coords[2 * e + 1])] = e;
             }
 
-            hull = new int[hullSize];
+            Hull = new int[hullSize];
             var s = hullStart;
             for (var i = 0; i < hullSize; i++)
             {
-                hull[i] = s;
+                Hull[i] = s;
                 s = hullNext[s];
             }
 
@@ -582,7 +582,7 @@ namespace DelaunatorSharp
 
         public IEnumerable<IEdge> GetHullEdges() => CreateHull(GetHullPoints());
 
-        public IPoint[] GetHullPoints() => Array.ConvertAll<int, IPoint>(hull, (x) => Points[x]);
+        public IPoint[] GetHullPoints() => Array.ConvertAll<int, IPoint>(Hull, (x) => Points[x]);
 
         public IPoint[] GetTrianglePoints(int t)
         {
