@@ -13,7 +13,7 @@ Port from Mapbox's Delaunator project (JavaScript).</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Copyright>https://github.com/mapbox/delaunator</Copyright>
     <Version>1.0.8</Version>
-    <PackageReleaseNotes>Performance improvement on GetVoronoiCells</PackageReleaseNotes>
+    <PackageReleaseNotes>Hull property access set to public</PackageReleaseNotes>
     <AssemblyName>DelaunatorSharp</AssemblyName>
     <RootNamespace>DelaunatorSharp</RootNamespace>
     <PackageId>Delaunator</PackageId>
