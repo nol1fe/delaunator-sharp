@@ -9,9 +9,24 @@ namespace DelaunatorSharp
         private readonly double EPSILON = Math.Pow(2, -52);
         private readonly int[] EDGE_STACK = new int[512];
 
+        /// <summary>
+        /// One value per half-edge, containing the point index of where a given half edge starts.
+        /// </summary>
         public int[] Triangles { get; private set; }
+
+        /// <summary>
+        /// One value per half-edge, containing the opposite half-edge in the adjacent triangle, or -1 if there is no adjacent triangle
+        /// </summary>
         public int[] Halfedges { get; private set; }
+
+        /// <summary>
+        /// The initial points Delaunator was constructed with.
+        /// </summary>
         public IPoint[] Points { get; private set; }
+
+        /// <summary>
+        /// A list of point indices that traverses the hull of the points.
+        /// </summary>
         public int[] Hull { get; private set; }
 
         private readonly int hashSize;
@@ -560,18 +575,18 @@ namespace DelaunatorSharp
             var seen = new HashSet<int>();
             var vertices = new List<IPoint>(10);    // Keep it outside the loop, reuse capacity, less resizes.
 
-            for (var triangleId = 0; triangleId < Triangles.Length; triangleId++)
+            for (var e = 0; e < Triangles.Length; e++)
             {
-                var id = Triangles[NextHalfedge(triangleId)];
+                var pointIndex = Triangles[NextHalfedge(e)];
                 // True if element was added, If resize the set? O(n) : O(1)
-                if (seen.Add(id))
+                if (seen.Add(pointIndex))
                 {
-                    foreach (var edge in EdgesAroundPoint(triangleId))
+                    foreach (var edge in EdgesAroundPoint(e))
                     {
                         // triangleVerticeSelector cant be null, no need to check before invoke (?.).
                         vertices.Add(triangleVerticeSelector.Invoke(TriangleOfEdge(edge)));
                     }
-                    yield return new VoronoiCell(id, vertices.ToArray());
+                    yield return new VoronoiCell(pointIndex, vertices.ToArray());
                     vertices.Clear();   // Clear elements, keep capacity
                 }
             }
@@ -690,6 +705,9 @@ namespace DelaunatorSharp
         #endregion ForEachMethods
 
         #region Methods based on index
+        /// <summary>
+        /// Returns the half-edges that share a start point with the given half edge, in order.
+        /// </summary>
         public IEnumerable<int> EdgesAroundPoint(int start)
         {
             var incoming = start;
@@ -700,6 +718,10 @@ namespace DelaunatorSharp
                 incoming = Halfedges[outgoing];
             } while (incoming != -1 && incoming != start);
         }
+
+        /// <summary>
+        /// Returns the three point indices of a given triangle id.
+        /// </summary>
         public IEnumerable<int> PointsOfTriangle(int t)
         {
             foreach (var edge in EdgesOfTriangle(t))
@@ -707,6 +729,11 @@ namespace DelaunatorSharp
                 yield return Triangles[edge];
             }
         }
+
+        /// <summary>
+        /// Returns the triangle ids adjacent to the given triangle id.
+        /// Will return up to three values.
+        /// </summary>
         public IEnumerable<int> TrianglesAdjacentToTriangle(int t)
         {
             var adjacentTriangles = new List<int>();
@@ -724,7 +751,15 @@ namespace DelaunatorSharp
 
         public static int NextHalfedge(int e) => (e % 3 == 2) ? e - 2 : e + 1;
         public static int PreviousHalfedge(int e) => (e % 3 == 0) ? e + 2 : e - 1;
+
+        /// <summary>
+        /// Returns the three half-edges of a given triangle id.
+        /// </summary>
         public static int[] EdgesOfTriangle(int t) => new int[] { 3 * t, 3 * t + 1, 3 * t + 2 };
+
+        /// <summary>
+        /// Returns the triangle id of a given half-edge.
+        /// </summary>
         public static int TriangleOfEdge(int e) { return e / 3; }
         #endregion Methods based on index
     }
