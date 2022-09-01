@@ -3,7 +3,7 @@
   "displayName": "Delaunator",
   "description": "Fast Delaunay triangulation of 2D points\nPort from Mapbox's Delaunator project (JavaScript).",
   "license": "MIT",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "references": [
     "DelaunatorSharp"
   ],
