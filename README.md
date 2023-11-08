@@ -32,6 +32,10 @@ From UnityPackage Menager select Delaunator and press "Import into Project".
 <img src="https://raw.githubusercontent.com/nol1fe/delaunator-sharp/master/Images/Delaunator_Package%20Manager.png" height="300" width="450">
 </p>
 
+### Burst Triangulator (optional)
+For Unity developers seeking even greater performance and advanced triangulation capabilities, consider exploring [BurstTriangulator](https://github.com/andywiecko/BurstTriangulator). 
+
+Built with Unity's Burst compiler, it offers lightning-fast triangulation, making it ideal for large datasets and real-time applications.
 
 ## WPF Example
 
