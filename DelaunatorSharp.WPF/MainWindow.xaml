@@ -15,6 +15,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <DockPanel VerticalAlignment="Top">
             <Label x:Name="ApplicationTime" HorizontalAlignment="Left" Content="00:00:00"/>
@@ -28,13 +29,19 @@
         <Canvas x:Name="PlayGround" Grid.ColumnSpan="5">
             <Rectangle Width="10" Height="10" Visibility="Hidden" Stroke="Black" x:Name="Square" Canvas.Left="50" Canvas.Top="50"></Rectangle>
         </Canvas>
-        <Button Content="Generate Samples" Grid.Row="1" Click="OnGenerateSamplesClick"/>
+        
         <DockPanel HorizontalAlignment="Stretch" Grid.Row="2">
+            <Button Width="200" Content="New" Click="OnNewClick"/>
+            <Button Width="200" Content="Generate Samples" Click="OnGenerateSamplesClick"/>
             <Button Width="200" Content="Draw voronoi" Click="OnDrawVoronoiClick"/>
-            <Button Width="200" Content="Draw delaunay" Grid.ColumnSpan="2" Click="OnDrawDelaunayClick"/>
-            <Button Width="200" Content="Draw Hull"  Click="OnDrawHullClick"/>
-            <Button Content="Draw Diagram" Click="OnDrawDiagramClick"/>
+            <Button Content="Draw delaunay" Grid.ColumnSpan="2" Click="OnDrawDelaunayClick"/>
         </DockPanel>
-        <Button Content="Clear" Grid.Row="3" Click="OnClearClick"/>
+        <DockPanel HorizontalAlignment="Stretch" Grid.Row="3">
+            <Button Width="200" Content="Draw Hull"  Click="OnDrawHullClick"/>
+            <Button Width="200" Content="Draw Diagram" Click="OnDrawDiagramClick"/>
+            <Button Width="200" Content="Save Points" Click="OnSavePoints"/>
+            <Button Content="Load Points" Click="OnLoadPoints"/>
+        </DockPanel>
+        <Button Content="Clear" Grid.Row="4" Click="OnClearClick"/>
     </Grid>
 </Window>
